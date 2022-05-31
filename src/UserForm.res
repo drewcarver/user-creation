@@ -1,4 +1,5 @@
 open User
+%%raw("import  './UserForm.css';")
 
 type userAction =
   | SetFirstName(string)
@@ -51,8 +52,8 @@ let make = () => {
   open ReactEvent
   let (user, dispatch) = React.useReducer(reducer, defaultUser)
   let disabled = switch user {
-    | ValidUser(_) => false
-    | InvalidUser(_) => true
+  | ValidUser(_) => false
+  | InvalidUser(_) => true
   }
   let onClick = (event: ReactEvent.Mouse.t) => {
     saveUser(user) |> ignore
@@ -60,37 +61,51 @@ let make = () => {
     ReactEvent.Mouse.stopPropagation(event)
   }
 
-  <form onSubmit={e => {
-    ReactEvent.Form.stopPropagation(e)
-    ReactEvent.Form.preventDefault(e)
-  }}>
-    <label htmlFor="firstName"> {"First Name:"->React.string} </label>
-    <input
-      id="firstName"
-      onChange={e => dispatch(SetFirstName(Form.target(e)["value"]))}
-      value={switch user {
+  <div className="user-page">
+    <form
+      className="user-form"
+      onSubmit={e => {
+        ReactEvent.Form.stopPropagation(e)
+        ReactEvent.Form.preventDefault(e)
+      }}>
+      <h1 className="user-form__title"> {"Create New Account"->React.string} </h1>
+      <label htmlFor="firstName"> {"First Name:"->React.string} </label>
+      <input
+        id="firstName"
+		className="user-form__input"
+        onChange={e => dispatch(SetFirstName(Form.target(e)["value"]))}
+        value={switch user {
         | ValidUser(u) => u.firstName
         | InvalidUser(u) => u.firstName |> Js.Option.getWithDefault("")
-      }}
-    />
-    <label htmlFor="lastName"> {"Last Name:"->React.string} </label>
-    <input
-      id="lastName"
-      onChange={e => dispatch(SetLastName(Form.target(e)["value"]))}
-      value={switch user {
+        }}
+      />
+      <label htmlFor="lastName"> {"Last Name:"->React.string} </label>
+      <input
+        id="lastName"
+		className="user-form__input"
+        onChange={e => dispatch(SetLastName(Form.target(e)["value"]))}
+        value={switch user {
         | ValidUser(u) => u.lastName
         | InvalidUser(u) => u.lastName |> Js.Option.getWithDefault("")
-      }}
-    />
-    <label htmlFor="userName"> {"User Name:"->React.string} </label>
-    <input
-      id="userName"
-      onChange={e => dispatch(SetUserName(Form.target(e)["value"]))}
-      value={switch user {
+        }}
+      />
+      <label htmlFor="userName"> {"User Name:"->React.string} </label>
+      <input
+        id="userName"
+		className="user-form__input"
+        onChange={e => dispatch(SetUserName(Form.target(e)["value"]))}
+        value={switch user {
         | ValidUser(u) => u.userName
         | InvalidUser(u) => u.userName |> getValue
-      }}
-    />
-    <button disabled onClick> {"Create"->React.string} </button>
-  </form>
+        }}
+      />
+      <button 
+	  	disabled 
+		onClick
+		className="user-form__create-button"
+	  > 
+	  {"Create"->React.string} 
+	  </button>
+    </form>
+  </div>
 }
