@@ -1,54 +1,11 @@
+open User
+
 type userAction =
   | SetFirstName(string)
   | SetLastName(string)
   | SetUserName(string)
 
-type user =
-  | InvalidUser({
-      firstName: option<string>,
-      lastName: option<string>,
-      userName: result<string, string>,
-    })
-  | ValidUser({firstName: string, lastName: string, userName: string})
-
 @module("./api/userApi.js") external saveUser: user => Js.Promise.t<user> = "default"
-
-let isNotEmpty = (input: string) =>
-  switch input {
-  | ""  => None
-  | i   => Some(i)
-  }
-
-let fromOption = (option: option<'a>, default: 'a) =>
-  switch option {
-  | Some(a) => Ok(a)
-  | None    => Error(default)
-  }
-
-let toOption = (result: result<'a, 'a>) =>
-  switch result {
-  | Ok(a)     => Some(a)
-  | Error(a)  => Some(a)
-  }
-
-let isLongerThan5Characters = (input: string) =>
-  input->Js.String.length >= 5 ? Ok(input) : Error(input)
-
-let validateUserName = userName =>
-  userName
-  ->Some
-  ->Belt.Option.flatMap(isNotEmpty)
-  ->fromOption("")
-  ->Belt.Result.flatMap(isLongerThan5Characters)
-
-let validateName = name => name->Some->Belt.Option.flatMap(isNotEmpty)
-
-let createUser = (firstName: string, lastName: string, userName: string) => {
-  switch (firstName |> validateName, lastName |> validateName, userName |> validateUserName) {
-  | (Some(fn), Some(ln), Ok(un)) => ValidUser({firstName: fn, lastName: ln, userName: un})
-  | (fn, ln, un) => InvalidUser({firstName: fn, lastName: ln, userName: un})
-  }
-}
 
 let getValue = (result: result<'a, 'b>) =>
   switch result {
@@ -98,13 +55,7 @@ let make = () => {
     | InvalidUser(_) => true
   }
   let onClick = (event: ReactEvent.Mouse.t) => {
-    saveUser(user) 
-    |> Js.Promise.then_(_ => { 
-      Js.Console.log("saved"); 
-
-      Js.Promise.resolve(ignore) 
-    }) 
-    |> ignore
+    saveUser(user) |> ignore
 
     ReactEvent.Mouse.stopPropagation(event)
   }
@@ -112,7 +63,7 @@ let make = () => {
   <form onSubmit={e => {
     ReactEvent.Form.stopPropagation(e)
     ReactEvent.Form.preventDefault(e)
-  }>
+  }}>
     <label htmlFor="firstName"> {"First Name:"->React.string} </label>
     <input
       id="firstName"

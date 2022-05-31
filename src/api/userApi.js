@@ -1,2 +1,5 @@
 
-export default (user) => new Promise.resolve({ ...user, id: 1 })
+export default (user) => {
+    console.log("user saved")
+    Promise.resolve({ ...user, id: 1 })
+}

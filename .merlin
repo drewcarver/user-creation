@@ -1,10 +1,15 @@
+
 ####{BSB GENERATED: NO EDIT
-FLG -ppx '/home/drew/repos/user-creation/node_modules/rescript/linux/bsc.exe -as-ppx -bs-jsx 3'
-S /home/drew/repos/user-creation/node_modules/rescript/lib/ocaml
-B /home/drew/repos/user-creation/node_modules/rescript/lib/ocaml
+FLG -ppx "C:\Users\drewc\Repos\user-creation\node_modules\rescript\win32\bsc.exe -as-ppx -bs-jsx 3"
+S C:\Users\drewc\Repos\user-creation\node_modules\rescript\lib\ocaml
+B C:\Users\drewc\Repos\user-creation\node_modules\rescript\lib\ocaml
 FLG -w +a-4-9-20-40-41-42-50-61-102
-S /home/drew/repos/user-creation/node_modules/@rescript/react/lib/ocaml
-B /home/drew/repos/user-creation/node_modules/@rescript/react/lib/ocaml
+S C:\Users\drewc\repos\user-creation\node_modules\@rescript\react\lib\ocaml
+B C:\Users\drewc\repos\user-creation\node_modules\@rescript\react\lib\ocaml
 S src
-B lib/bs/src
+B lib\bs\src
+S src\utilities
+B lib\bs\src\utilities
+S src\models
+B lib\bs\src\models
 ####BSB GENERATED: NO EDIT}
