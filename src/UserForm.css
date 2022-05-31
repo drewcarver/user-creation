@@ -51,6 +51,10 @@ body {
     margin-bottom: 1rem;
 }
 
+.user-form__input:focus {
+    box-shadow: 0 0 10px #9ecaed;
+}
+
 .user-form__create-button {
     height: 3em;
     font-size: 16px;
