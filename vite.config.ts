@@ -6,9 +6,8 @@ import createReScriptPlugin from '@jihchi/vite-plugin-rescript';
 export default defineConfig({
   plugins: [reactRefresh(), createReScriptPlugin()],
   test: {
-    include: ['tests/**/*_test.bs.js'],
+    include: ['__tests__/**/*.test.bs.js'],
     globals: true,
-    environment: 'jsdom',
-    setupFiles: './tests/setup.ts',
+    environment: 'jsdom'
   },
 });

@@ -1,11 +1,21 @@
 
 ####{BSB GENERATED: NO EDIT
+B lib\bs
+FLG -open UserCreation
 FLG -ppx "C:\Users\drewc\Repos\user-creation\node_modules\rescript\win32\bsc.exe -as-ppx -bs-jsx 3"
 S C:\Users\drewc\Repos\user-creation\node_modules\rescript\lib\ocaml
 B C:\Users\drewc\Repos\user-creation\node_modules\rescript\lib\ocaml
 FLG -w +a-4-9-20-40-41-42-50-61-102
 S C:\Users\drewc\repos\user-creation\node_modules\@rescript\react\lib\ocaml
 B C:\Users\drewc\repos\user-creation\node_modules\@rescript\react\lib\ocaml
+S C:\Users\drewc\repos\user-creation\node_modules\@glennsl\bs-jest\lib\ocaml
+B C:\Users\drewc\repos\user-creation\node_modules\@glennsl\bs-jest\lib\ocaml
+S C:\Users\drewc\repos\user-creation\node_modules\rescript-react-testing-library\lib\ocaml
+B C:\Users\drewc\repos\user-creation\node_modules\rescript-react-testing-library\lib\ocaml
+S C:\Users\drewc\repos\user-creation\node_modules\rescript-dom-testing-library\lib\ocaml
+B C:\Users\drewc\repos\user-creation\node_modules\rescript-dom-testing-library\lib\ocaml
+S __tests__
+B lib\bs\__tests__
 S src
 B lib\bs\src
 S src\utilities

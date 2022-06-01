@@ -2,8 +2,12 @@
   "name": "user-creation",
   "sources": [
     {
-      "dir": "src", 
+      "dir": "src",
       "subdirs": true
+    },
+    {
+      "dir": "__tests__",
+      "type": "dev"
     }
   ],
   "package-specs": [
@@ -13,7 +17,13 @@
     }
   ],
   "suffix": ".bs.js",
+  "namespace": true,
   "reason": { "react-jsx": 3 },
+  "bs-dev-dependencies": [
+    "@glennsl/bs-jest",
+    "rescript-react-testing-library",
+    "rescript-dom-testing-library"
+  ],
   "bs-dependencies": [
     "@rescript/react"
 	]
