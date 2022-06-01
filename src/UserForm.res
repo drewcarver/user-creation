@@ -1,12 +1,23 @@
 open User
 %%raw("import  './UserForm.css';")
+%%raw("import  'toastify-js/src/toastify.css';")
 
 type userAction =
   | SetFirstName(string)
   | SetLastName(string)
   | SetUserName(string)
 
+type toast = {
+	text: string,
+	duration: int,
+	gravity: [ #top | #bottom ],
+	position: [ #left | #center | #right ],
+	stopOnFocus: bool,
+}
+type toastify = { showToast: (. unit) => unit }
+
 @module("./api/userApi.js") external saveUser: user => Js.Promise.t<user> = "default"
+@module("toastify-js") external toastify: (toast) => toastify = "default"
 
 let getValue = (result: validatableInput) =>
   switch result {
@@ -67,7 +78,16 @@ let make = () => {
 	|> Js.Promise.then_(_ => {
 		setSaving(_ => false)
 
-		Js.Promise.resolve(())
+		Js.Console.log(toastify)
+		toastify({ 
+			text: "Save Successful",
+			duration: 1000,
+			gravity: #top,
+			position: #right,
+			stopOnFocus: false
+		}).showToast(.)
+
+		Js.Promise.resolve()
 	})
 	|> ignore
 

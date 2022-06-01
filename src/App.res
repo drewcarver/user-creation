@@ -3,8 +3,9 @@
 let make = () => {
   let url = RescriptReactRouter.useUrl()
   
-	switch (url.path) {
+	switch url.path {
     | list{ "userform" } => <UserForm />
-		| _ => "Route not found" -> React.string
+	| list{ "routeArgumentDemonstration", param } => <RouteParam param />
+	| _ => "Route not found" -> React.string
 	}
 }
