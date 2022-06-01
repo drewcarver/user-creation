@@ -1,5 +1,8 @@
 
 export default (user) => {
     console.log("user saved")
-    Promise.resolve({ ...user, id: 1 })
+    
+    return new Promise(resolve => {
+        setTimeout(() => resolve({ ...user, id: 1 }), 1 * 1000)
+    })
 }
